@@ -56,3 +56,6 @@ target/
 
 # Sublime text
 *.sublime-*
+
+# Visual studio code
+.vscode/

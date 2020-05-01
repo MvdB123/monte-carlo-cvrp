@@ -8,7 +8,7 @@ from project import data_input, util
 from project.solvers import clarke_wright, monte_carlo_savings, binary_mcscws
 
 def usage():
-    print "python {} <tspblib_file> <vehicles_number> [<lambda_p>]".format(sys.argv[0])
+    print( "python {} <tspblib_file> <vehicles_number> [<lambda_p>]".format(sys.argv[0]))
 
 def main():
     if len(sys.argv) < 3: # python main.py <file> <vehicles_number> [<p>]
@@ -30,8 +30,8 @@ def main():
 
     algorithms = [
         (clarke_wright_solver, 'ClarkeWrightSolver'),
-        (monte_carlo_savings_solver, 'MonteCarloSavingsSolver'),
-        (binary_mcscws_solver, 'BinaryMCSCWSSolver')
+        # (monte_carlo_savings_solver, 'MonteCarloSavingsSolver'),
+        # (binary_mcscws_solver, 'BinaryMCSCWSSolver')
     ]
 
     best_algorithm = None
@@ -45,12 +45,12 @@ def main():
         elapsed = time.time() - start
 
         if not solution.is_complete():
-            print 'Solution from algorithm {} not a complete solution'.format(algorithm)
+            print( 'Solution from algorithm {} not a complete solution'.format(algorithm))
 
-        print '{} solution:'.format(algorithm)
+        print( '{} solution:'.format(algorithm))
         util.print_solution(solution)
 
-        print 'Elapsed time (seconds): {}'.format(elapsed)
+        print( 'Elapsed time (seconds): {}'.format(elapsed))
 
         if best_algorithm is None:
             best_algorithm = algorithm
@@ -62,9 +62,9 @@ def main():
             best_solution = solution
             best_algorithm = algorithm
 
-        print
+        print()
 
-    print 'Best: {}'.format(best_algorithm)
+    print( 'Best: {}'.format(best_algorithm))
 
 if __name__ == '__main__':
     main()

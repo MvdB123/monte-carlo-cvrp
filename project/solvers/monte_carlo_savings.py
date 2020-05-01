@@ -152,14 +152,14 @@ class MonteCarloSavingsSolver(BaseSolver):
             processed_count = processed_count + 1
             solution_lengths = solution_lengths + solution.length()
 
-        print 'best solution found on {}'.format(time_found)
+        print( 'best solution found on {}'.format(time_found))
 
         if processed_count:
-            print 'average solution lengths: {}'.format(solution_lengths / float(processed_count))
+            print( 'average solution lengths: {}'.format(solution_lengths / float(processed_count)))
 
         if not best.is_complete():
             from project import util
-            print 'Best solution not feasible, printing best feasible found'
+            print( 'Best solution not feasible, printing best feasible found')
             util.print_solution(best_feasible)
 
         return best

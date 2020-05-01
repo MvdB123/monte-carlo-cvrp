@@ -254,7 +254,7 @@ def _parse_tsplib(f):
         missing_specs = set(used_specs).symmetric_difference(set(specs))
         raise ParseException('Error parsing TSPLIB data: specs {} missing'.format(missing_specs))
 
-    print specs
+    print( specs)
 
     if specs['EDGE_WEIGHT_TYPE'] == 'EUC_2D':
         used_data.append('NODE_COORD_SECTION')

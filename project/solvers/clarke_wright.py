@@ -18,7 +18,7 @@ class ClarkeWrightSolution(BaseSolution):
         self._routes = [models.Route(cvrp_problem, cvrp_problem.capacity()) for _ in range(len(self._nodes) - 1)]
 
         for i, node in enumerate([node for node in self._nodes.values() if node != cvrp_problem.depot()]):
-            self._routes[i].allocate([node])
+            self._routes[i-1].allocate([node])
 
     def clone(self):
         """Returns a deep copy of self

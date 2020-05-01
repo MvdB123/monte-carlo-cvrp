@@ -38,7 +38,7 @@ class Route(object):
         last = depot
         for i in self._nodes:
             a, b = last, i
-            if a > b:
+            if a._name > b._name:
                 a, b = b, a
 
             cost = cost + self._problem.distance(a, b)
@@ -188,10 +188,14 @@ class CVRPData(object):
 
     def edges(self):
         """Returns a generator for iterating over edges"""
-        for i in sorted(self._matrix.keys()):
-            for j in sorted(self._matrix[i].keys()):
-                if i != j:
-                    yield (i, j)
+        nodes1 = list(self._matrix.keys())
+        nodes1.sort(key=lambda x: x._name, reverse=False)
+        for node_1 in nodes1:
+            nodes2 = list(self._matrix[node_1].keys())
+            nodes2.sort(key=lambda x: x._name, reverse=False)
+            for node_2 in nodes2:
+                if node_1 != node_2:
+                    yield (node_1, node_2)
 
     def depot(self):
         """Returns the depot node"""
@@ -201,10 +205,14 @@ class CVRPData(object):
         """Returns the distance between node i and node j"""
         a, b = i, j
 
-        if a.name > b.name:
+        if a._name > b._name:
             a, b = b, a
 
-        return self._matrix[a][b]
+        # Hack: make matrix keys not objects but integer identifiers or somethign
+        node_1 = [node for node in list(self._matrix.keys()) if node._name == a._name][0]
+        node_2 = [node for node in list(self._matrix[node_1].keys()) if node._name == b._name][0]
+        distance = self._matrix[node_1][node_2]
+        return distance
 
     def capacity(self):
         """Returns vehicles capacity"""

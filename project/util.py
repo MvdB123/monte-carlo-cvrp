@@ -2,34 +2,34 @@
 # -*- coding: utf-8 -*-
 
 def print_upper_triangular_matrix(matrix):
-    """Prints a CVRP data dict matrix"""
+    """prints a CVRP data dict matrix"""
 
-    # Print column header
+    # print column header
     # Assumes first row contains all needed headers
     first = sorted(matrix.keys())[0]
-    print '\t',
+    print( '\t',)
     for i in matrix[first]:
-        print '{}\t'.format(i),
-    print
+        print( '{}\t'.format(i),)
+    print()
 
     indent_count = 0
 
     for i in matrix:
-        # Print line header
-        print '{}\t'.format(i),
+        # print line header
+        print( '{}\t'.format(i),)
 
         if indent_count:
-            print '\t' * indent_count,
+            print( '\t' * indent_count,)
 
         for j in sorted(matrix[i]): # required because dict doesn't guarantee insertion order
-            print '{}\t'.format(matrix[i][j]),
+            print( '{}\t'.format(matrix[i][j]),)
 
-        print
+        print()
 
         indent_count = indent_count + 1
 
 def print_upper_triangular_matrix_as_complete(matrix):
-    """Prints a CVRP data dict upper triangular matrix as a normal matrix
+    """prints a CVRP data dict upper triangular matrix as a normal matrix
 
     Doesn't print header"""
     for i in sorted(matrix.keys()):
@@ -38,12 +38,12 @@ def print_upper_triangular_matrix_as_complete(matrix):
             if a > b:
                 a, b = b, a
 
-            print matrix[a][b],
+            print( matrix[a][b],)
 
-        print
+        print()
 
 def print_solution(solution):
-    """Prints a solution
+    """prints a solution
 
     Solution is an instance of project.solvers.BaseSolution
 
@@ -57,5 +57,5 @@ def print_solution(solution):
     for solution in solution.routes():
         cost = solution.length()
         total_cost = total_cost + cost
-        print '{}: {}'.format(solution, cost)
-    print 'Total cost: {}'.format(total_cost)
+        print( '{}: {}'.format(solution, cost))
+    print( 'Total cost: {}'.format(total_cost))
